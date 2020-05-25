@@ -1,6 +1,6 @@
 documents = [
     {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
-    {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
+    {"type": "invoice", "number": "11-2"},
     {"type": "insurance", "number": "10006", "name": "Аристарх Павлов"}
 ]
 
@@ -64,7 +64,7 @@ def print_list():
     команда, которая выведет список всех документов в формате passport "2207 876234" "Василий Гупкин";
     '''
     for document in documents:
-        print(document["number"], document["name"])
+        print(document['number'], document['name'])
     return
 
 
@@ -93,17 +93,12 @@ def create_key_errors():
     новой функцией, выводящей имена всех владельцев документов.
     С помощью исключения KeyError проверяйте, есть ли поле "name" у документа.
     '''
-    user_input = input('Введите номер документа: ')
-    document_value = []
 
-    try:
-        for document in documents:
-            for key, value in document.items():
-                if user_input in document.values():
-                    document_value.append(value)
-        print(document_value[2])
-    except Exception as e: #если документа не существует, ловим ошибку, выходим из функции и переходим к циклу
-        print(f'Введены неверные данные! текст ошибки: {e}')
+    for document in documents:
+        try:
+            print(document['name'])
+        except KeyError:
+            print('У документа: ', document['number'], 'нет владельца!')
     return
 
 main()
