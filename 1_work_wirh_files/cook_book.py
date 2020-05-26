@@ -30,4 +30,5 @@ def get_shop_list_by_dishes(dishes, person_count):
 
     return cook_list
 
+
 print(get_shop_list_by_dishes('Утка по-пекински', 3))
