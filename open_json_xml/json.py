@@ -10,6 +10,15 @@ def open_json(file):
 
     return list_date
 
+def create_list(file_open):
+    json_file = file_open.findall('channel/item')
+    list_desc = []
+
+    for item in json_file:
+        desc = item.find('description')
+        list_desc.extend(desc.text.split())
+
+    return list_desc
 
 def get_ten_rated(descriptions_list):
     dict_word = {}
@@ -32,4 +41,4 @@ def get_ten_rated(descriptions_list):
         print(f'{item[1]}: {item[0]}')
 
 
-get_ten_rated(open_json('newsafr.json'))
+get_ten_rated(create_list(open_json('newsafr.json')))
